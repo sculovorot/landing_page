@@ -1,18 +1,18 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', () => {
 
     'use strict';
     let tab = document.querySelectorAll('.info-header-tab'),
         info = document.querySelector('.info-header'),
         tabContent = document.querySelectorAll('.info-tabcontent');
 
-    function hideTabContent(a) {
+    function hideTabContent(a = 1) {
         for (let i = a; i < tabContent.length; i++) {
             tabContent[i].classList.remove('show');
             tabContent[i].classList.add('hide');
         }
     }
 
-    hideTabContent(1);
+    hideTabContent();
 
     function showTabContent(b) {
         if (tabContent[b].classList.contains('hide')) {
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    info.addEventListener('click', function(event) {
+    info.addEventListener('click', (event) => {
         let target = event.target;
         if (target && target.classList.contains('info-header-tab')) {
             for(let i = 0; i < tab.length; i++) {
@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     //timer
-    let dedline = '2020-03-27';
+    let dedline = '2020-03-31';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()),
@@ -90,13 +90,13 @@ window.addEventListener('DOMContentLoaded', function() {
         overlay = document.querySelector('.overlay'),
         close = document.querySelector('.popup-close');
     
-    more.addEventListener('click', function() {
+    more.addEventListener('click', () => {
         overlay.style.display = 'block';
         this.classList.add('more-splash');
         document.body.style.overflow = 'hidden';
     });
 
-    close.addEventListener('click', function() {
+    close.addEventListener('click', () => {
         overlay.style.display = 'none';
         more.classList.remove('more-splash');
         document.body.style.overflow = '';
