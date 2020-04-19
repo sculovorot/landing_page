@@ -160,9 +160,59 @@ function sendForm(elem) {
             .catch (()=> statusMessage.innerHTML = message.failure)
             .then(clearInput())
     });
-}
+    }
     sendForm(form);
     sendForm(formBottom);
 
+    //slider
+
+    let sliderIndex = 1,                                         //параметр текущего слайда
+        slides = document.querySelectorAll('.slider-item'),   //geting slides from the page
+        prev = document.querySelector('.prev'),                 //getting arrows
+        next = document.querySelector('.next'),
+        dotsWrap = document.querySelector('.slider-dots'),      //getting dots
+        dots = document.querySelectorAll('.dot');
+
+    showSlides(sliderIndex);
+
+    function showSlides (n) {                                       //function show slides
+
+        if (n > slides.length) {                                   //условие переключения слайдов
+            sliderIndex = 1;
+        }
+        if (n<1) {
+            sliderIndex = slides.length;
+        }
+
+        slides.forEach((item) => item.style.display = 'none');       //all slides are disabled
+        // for (let i=0; i < slides.length; i++) {                   //эти 2 записи абсолютно идентичны
+        //     slides[i].style.display = 'none';
+        // }
+        dots.forEach((item) => item.classList.remove('dot-active'));  //убираем классы с точек
+        slides[sliderIndex - 1].style.display = 'block';             //show one slide
+        dots[sliderIndex - 1].classList.add('dot-active');            //show dot
+        
+    }
+
+    function plusSlides (n) {                                         //ф-ия которая увеличивает параметр slideIndex
+        showSlides(sliderIndex +=n);                                  //сразу вызываем ф-ию с новым аргументом
+    }
+    function currentSlide(n) {                                        //для показа конкретного слайда (когда кликаем на точку n)                               
+        showSlides(sliderIndex = n);
+    }
     
+    prev.addEventListener('click', function() {                        //реалинуем стрелочку "назад"
+        plusSlides(-1);
+    });
+    next.addEventListener('click', function() {                        //стрелочка вперед
+        plusSlides(1);
+    });
+
+    dotsWrap.addEventListener('click', function(event) {               //реализуем точки используя делегирование
+        for (let i = 0; i < dots.length +1; i++) {
+            if (event.target.classList.contains('dot') && event.target == dots[i-1]) {
+                currentSlide(i);                                          //при клмке в 4-ю точку открываем 4-й слайд
+            }
+        }
+    })
 });
