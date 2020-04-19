@@ -221,71 +221,35 @@ function sendForm(elem) {
     let persons = document.querySelectorAll('.counter-block-input')[0],  //получает ккол-во персон и указываем что это 1-й элемент
         restDays = document.querySelectorAll('.counter-block-input')[1],  // получаем кол-во дней (это второй элемент со страницы)
         place = document.getElementById('select'),                        //получаем место со страницы
-<<<<<<< Updated upstream
         totalValue = document.getElementById('total'),                    //получаем сумму со страницы
-        personsSum = 0,                                                     //вводим переменные
-        daysSum = 0,
-        total = 0;                                                       //это итоговое значение будем записывать 
-=======
-        totalValue = document.getElementById('total');                    //получаем сумму со страницы
-                                                           //это итоговое значение будем записывать 
-
->>>>>>> Stashed changes
-
+        personsSum,
+        daysSum,
+        total;                                                                //это итоговое значение будем записывать
+                                                           
     totalValue.innerHTML = 0;                                            //записываем в поле итоговая сумма значение 0
 
     persons.addEventListener('change', function(){                        //при изменении значения инпута ...
-<<<<<<< Updated upstream
         personsSum = +this.value;                                       //при помощи контекста вызова получаем тот элемент, на котором происходит событие
         total = (daysSum + personsSum)*4000;                             //производим вычисление
         
-        if (restDays.value == '' || personsSum.value == '') {             //если второй инпут пустой, то отображается 0
+        if (restDays.value == '' || persons.value == '') {             //если второй инпут пустой, то отображается 0
             totalValue.innerHTML = 0;
             
         } else {  
            
             totalValue.innerHTML = total;                                    //если оба инпута заполнены выводим total
-=======
-        let personsSum = +this.value;                                       //при помощи контекста вызова получаем тот элемент, на котором происходит событие
-        // total = (daysSum + personsSum)*4000;                             //производим вычисление
-        
-        if (restDays.value == '' || persons.value == '' ) {             //если второй инпут пустой, то отображается 0
-            totalValue.innerHTML = 0;
-            console.log('сработало усл1');
-            
-        } else {  
-            // let  personsSum = +this.value;
-            total = (daysSum + personsSum)*4000;
-            totalValue.innerHTML = total;  
-            console.log('personsSum ', personsSum);                                  //если оба инпута заполнены выводим total
->>>>>>> Stashed changes
         }
     }); 
 
     restDays.addEventListener('change', function(){                        //при изменении значения инпута ...
-<<<<<<< Updated upstream
         daysSum = +this.value;                                         //при помощи контекста вызова получаем тот элемент, на котором происходит событие
         total = (daysSum + personsSum)*4000;                             //производим вычисление
         
-        if (restDays.value == '' || personsSum.value == '') {                                        //если второй инпут пустой, то отображается 0
+        if (restDays.value == '' || persons.value == '') {                                        //если второй инпут пустой, то отображается 0
             totalValue.innerHTML = 0;
             
         } else  {
-            // daysSum = +this.value; 
-            // total = (daysSum + personsSum)*4000;
-=======
-        // daysSum = +this.value;                                         //при помощи контекста вызова получаем тот элемент, на котором происходит событие
-        // total = (daysSum + personsSum)*4000;                             //производим вычисление
-        
-        if (persons.value == '') {                                        //если второй инпут пустой, то отображается 0
-            totalValue.innerHTML = 0;
-            console.log('сработало усл2');
-            
-        } else  {
-            let daysSum = +this.value; 
-            total = (daysSum + personsSum)*4000;
-            console.log('daysSum ', daysSum);
->>>>>>> Stashed changes
+           
             totalValue.innerHTML = total;                                   //если оба инпута заполнены выводим total
         }
     });
@@ -293,24 +257,12 @@ function sendForm(elem) {
     
 
     place.addEventListener('change', function() {                           //добавляем выбор базы отдыха (они прописаны в нтмл коде)
-<<<<<<< Updated upstream
-        if (restDays.value == '' || personsSum.value == '') {
+        if (restDays.value == '' || persons.value == '') {
             totalValue.innerHTML = 0;
             
         } else {                                                            //чтобы избежать потери данных записанных в total создадим промеж перемен 
             let a = total;
             totalValue.innerHTML = a * this.options[this.selectedIndex].value;
-=======
-        if (restDays.value == '' || persons.value == '') {
-            totalValue.innerHTML = 0;
-            console.log('сработало усл3')
-            
-        } else {  
-            let a = total;                                                         //чтобы избежать потери данных записанных в total создадим промеж перемен 
-            
-            totalValue.innerHTML = a * this.options[this.selectedIndex].value;
-            console.log('ДНЕЙ ', daysSum, 'человек ', personsSum );
->>>>>>> Stashed changes
         }
     });
 });
